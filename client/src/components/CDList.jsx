@@ -10,13 +10,21 @@ const CDList = () => {
   }, []);
 
   const fetchCDs = async () => {
-    const data = await getCDs();
-    setCDs(data);
+    try {
+      const data = await getCDs();
+      setCDs(data);
+    } catch (error) {
+      console.error('Erreur lors du chargement des CDs:', error);
+    }
   };
 
   const handleDelete = async (id) => {
-    await deleteCD(id);
-    fetchCDs(); // Rafraîchir la liste après suppression
+    try {
+      await deleteCD(id);
+      fetchCDs(); // Rafraîchir la liste après suppression
+    } catch (error) {
+      console.error('Erreur lors de la suppression:', error);
+    }
   };
 
   return (

@@ -14,6 +14,10 @@ services:
     volumes:
       - postgres_dev_data:/var/lib/postgresql/data
       - ./server/configs/import.sql:/docker-entrypoint-initdb.d/init_db.sql
+    command: >
+      postgres
+      -c listen_addresses='*'
+      -c max_connections=200
 
 volumes:
   postgres_dev_data:

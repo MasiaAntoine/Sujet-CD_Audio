@@ -12,9 +12,13 @@ const AddCD = ({ onAdd }) => {
     e.preventDefault();
     if (!form.title || !form.artist || !form.year) return;
 
-    await addCD(form);
-    onAdd();
-    setForm({ title: "", artist: "", year: "" });
+    try {
+      await addCD(form);
+      onAdd();
+      setForm({ title: "", artist: "", year: "" });
+    } catch (error) {
+      console.error('Erreur lors de l\'ajout du CD:', error);
+    }
   };
 
   return (
